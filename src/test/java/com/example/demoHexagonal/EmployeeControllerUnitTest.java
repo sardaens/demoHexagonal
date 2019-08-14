@@ -21,8 +21,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc //need this in Spring Boot test
-public class EmployeeControllerTest {
+public class EmployeeControllerUnitTest {
 
+	
+	// Test de la partie Controller avec Mock (-> Unit test)
 	
 	@Autowired
 	private MockMvc mockMvc;
