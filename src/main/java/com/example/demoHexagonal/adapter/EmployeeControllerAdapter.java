@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demoHexagonal.domain.Employee;
+import com.example.demoHexagonal.exception.NotFoundException;
 import com.example.demoHexagonal.port.EmployeeUIPort;
 import com.example.demoHexagonal.service.EmployeeService;
 
@@ -21,7 +22,7 @@ public class EmployeeControllerAdapter implements EmployeeUIPort{
         employeeService.create(request.getName(), request.getRole(), request.getSalary());
     }
     @Override
-    public Employee view(@PathVariable Integer id) {
+    public Employee view(@PathVariable Integer id) throws NotFoundException {
         Employee employee = employeeService.view(id);
         return employee;
     }
