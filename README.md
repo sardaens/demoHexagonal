@@ -7,3 +7,6 @@ Principes de l'architecture hexagonale :
 
 Interet :
 - Maintenance facilité avec une plus grande souplesse sur les tests unitaires, seuls des mocks au niveau des interfaces permettent d'isoler et de tester independamment le metier.
+
+
+- add junit test
