@@ -6,12 +6,12 @@ pipeline {
     stage('Maven Install and Test') {
       agent {
         docker {
-          image 'maven:3.5.0'
+          image 'maven:3-alpine'
           args '-v /root/.m2:/root/.m2'
         }
       }
       steps {
-        sh 'mvn clean install'
+        sh 'mvn clean package'
       }
       post {
           always {
