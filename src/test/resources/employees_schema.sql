@@ -6,4 +6,3 @@ CREATE TABLE employee (
   role VARCHAR(250) ,
   salary INT(5)
 );
-
