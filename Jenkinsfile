@@ -23,7 +23,7 @@ pipeline {
     stage('Docker Build') {
       agent any
       steps {
-        sh 'docker build -t sardaens/demoHexagonale:latest .'
+        sh 'docker build -t sardaens/demohexagonale:latest .'
       }
     }
     stage('Docker Push') {
@@ -31,7 +31,7 @@ pipeline {
       steps {
         withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
           sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
-          sh 'docker push sardaens/demoHexagonale:latest'
+          sh 'docker push sardaens/demohexagonale:latest'
         }
       }
     }
