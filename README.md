@@ -98,3 +98,17 @@ cf EmployeeServiceIntegrationTest.java
 
 3/ Il est possible de populer la base de test avec l'annotation @Sql
 cf employees_schema.sql et import_employees.sql
+
+## CICD
+
+# Jenkins :
+- Run jenkins in docker
+
+docker run \
+  --rm \
+  -u root \
+  -p 8080:8080 \
+  -v jenkins-data:/var/jenkins_home \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  -v "$HOME":/home \
+  jenkinsci/blueocean
