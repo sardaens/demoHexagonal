@@ -1,4 +1,4 @@
-FROM openjdk:8-jre-slim
+FROM openjdk:11-jre-slim
 LABEL maintainer="ardaens.stephane@gmail.com"
 
 ENV JVM_OPTIONS="-Djava.security.egd=file:/dev/./urandom -Xmx512M -XshowSettings:vm"
