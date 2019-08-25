@@ -1,0 +1,48 @@
+Architecture hexagonale
+-----------------------
+
+Principe :
+----------
+Isoler toute la logique metier d'une application pour lui permettre d'etre piloté par une UI, des APIs Rest, des tests , des batchs, et la rendre independante de l'infrastruture (BDD ou service externe).
+
+Benefice : Tests automatisés du metier independamment de l'infrastructure.
+
+1/ Decoupage du code en 3 "packages/modules" :
+
+- Domain : regroupe l'ensemble de la logique metier. on retrouve dans cette partie le modele metier et les regles de gestion.
+ C'est le + important, il correspond au besoin au quel repond le programme.
+
+- Application : ce qui va interagir avec le metier (cad le domaine). C'est ce qui va être mis à disposition de l'utilisateur final.
+On va y retrouver les routes des apis rest exposées, le mode console, l'IHM. c'est cette partie qui va piloter le domain.
+
+- Infrastructure : ce qui va etre piloté par le metier. Il represente les sources de données, services utilisés par le domaine.
+On va y retrouver toute la logique d'acceès au données : BDD, module d'accès à des services externes  : interface avec des APIs de WS externe.
+
+Le fait que le metier ait besoin d'accèder à une données d'un schema d'une base de données mysql pour y lire une table X, est un detail d'implementation technique qui doit se trouver uniquement dans la partie infrastructure.
+Le metier lui utitilise une interface definissant ce dont il a besoin cote infrastruture.
+
+De même, le fait que l'application expose une API Rest pour declencher un traitement metier est un detail d'implementation technique qui doit se trouver dans la partie application.
+Le metier definit une interface pour exposer la facon dont il peut etre appellé/piloté.
+
+Le metier est isolé , peu importe qu'il soit accèder depuis une application console, une api rest, qu'il ait besoin d'une base mysql ou d'un WS externe pour traiter une donnée.
+
+
+Detail d'implementation :
+-------------------------
+Cette isolation du metier se fait via des interfaces (Port), et de l'inversion de dependance.
+Le metier contient des interfaces, l'application et l'infrastruture implementent ces interfaces via des adapters.
+
+2/ les dependances vont vers l'interieur, vers le domaine.
+le metier n'a pas de dependances directes. l'application et l'infrastruture ont une dependance vers les interfaces (les ports) exposées par le metier.
+-> tout depend du domaine, le domaine ne depend de rien.
+
+la serialisation JSON/XML pour exposée des APIS Rest se trouve dans la partie Application
+
+
+Avantage : assurer la perennité du metier independamment de l'infrastructure. (je peux changer ma BDD sans devoir reecrire du code metier et donc devoir retester tout mon metier).
+----------
+
+
+
+- Tout ce qui appelle le metier : API.
+- Tout ce qui est appellé par le metier (ce dont il a besoin pour fonctionner) : SPI.
