@@ -114,3 +114,5 @@ docker run \
   jenkinsci/blueocean
 
 le script jenkinsfile permet de builder l'application, executer les tests, builder l'image docker et pousser l'image sur la registry : **sardaens/demohexagonale:latest**
+
+new value
